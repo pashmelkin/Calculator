@@ -27,7 +27,8 @@ fun main() {
                 }
             }
             params.result = result;
-            println(params)
+            println("params class: $params and result is ${params.result}")
+
         } catch (e: Exception) {
             println("${e.message}")
         }
