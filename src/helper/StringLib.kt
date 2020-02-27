@@ -1,3 +1,5 @@
+package helper
+
 class StringLib {
 
     companion object {
