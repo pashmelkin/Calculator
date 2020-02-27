@@ -8,15 +8,16 @@ fun main() {
         try {
             var param1 = StringLib.ReadParameter("parameter 1: ")
             var param2 = StringLib.ReadParameter("parameter 2: ")
+            var params = ParameterStore(param1, param2)
 
             print("operation: + - * /  ")
-            when (readLine()!!) {
-                ADD.operator -> result = param1?.plus(param2!!) ?: 0.0
-                SUBTRACT.operator -> result = param1?.minus(param2!!) ?: 0.0
-                MULTIPLY.operator -> result = (if (param1 == null || param2 == null) {
+            result = when (readLine()!!) {
+                ADD.operator -> params.Param1?.plus(params.Param2!!) ?: 0.0
+                SUBTRACT.operator -> param1?.minus(param2!!) ?: 0.0
+                MULTIPLY.operator -> (if (param1 == null || param2 == null) {
                     0.0
                 } else param1 * param2)
-                DIVIDE.operator -> result = (if (param1 == null || param2 == null) {
+                DIVIDE.operator -> (if (param1 == null || param2 == null) {
                     0.0
                 } else if (param2 == 0.0) throw ArithmeticException()
                 else param1 / param2)
@@ -25,7 +26,8 @@ fun main() {
                     throw Exception(StringLib.WRONG_OPERATION)
                 }
             }
-            println("result is $result")
+            params.result = result;
+            println(params)
         } catch (e: Exception) {
             println("${e.message}")
         }
