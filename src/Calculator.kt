@@ -1,4 +1,5 @@
 import java.lang.Exception
+import Operation.*
 
 @Throws(ArithmeticException::class)
 fun main() {
@@ -10,18 +11,18 @@ fun main() {
 
             print("operation: + - * /  ")
             when (readLine()!!) {
-                "+" -> result = param1?.plus(param2!!) ?: 0.0
-                "-" -> result = param1?.minus(param2!!) ?: 0.0
-                "*" -> result = (if (param1 == null || param2 == null) {
+                ADD.operator -> result = param1?.plus(param2!!) ?: 0.0
+                SUBTRACT.operator -> result = param1?.minus(param2!!) ?: 0.0
+                MULTIPLY.operator -> result = (if (param1 == null || param2 == null) {
                     0.0
                 } else param1 * param2)
-                "/" -> result = (if (param1 == null || param2 == null) {
+                DIVIDE.operator -> result = (if (param1 == null || param2 == null) {
                     0.0
                 } else if (param2 == 0.0) throw ArithmeticException()
                 else param1 / param2)
                 "@" -> break@loop
                 else -> {
-                    throw Exception("Wrong operation")
+                    throw Exception(StringLib.WRONG_OPERATION)
                 }
             }
             println("result is $result")
